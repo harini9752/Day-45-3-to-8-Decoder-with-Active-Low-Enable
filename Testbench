@@ -1,0 +1,28 @@
+module tb_three_to_eight_decoder_with_enable;
+
+  reg [2:0] input;
+  reg enable_n;
+  wire [7:0] output;
+
+  three_to_eight_decoder_with_enable uut (
+    .input(input),
+    .enable_n(enable_n),
+    .output(output)
+  );
+
+  initial begin
+    // Test 1: Enable input low, Input 3'b010
+    enable_n = 0;
+    input = 3'b010;
+    #10 $display("Time=%0t Input=%b Enable_n=%b Output=%b", $time, input, enable_n, output);
+
+    // Test 2: Enable input high
+    enable_n = 1;
+    #10 $display("Time=%0t Input=%b Enable_n=%b Output=%b", $time, input, enable_n, output);
+
+    // Add more test cases as needed
+
+    $finish;
+  end
+
+endmodule
